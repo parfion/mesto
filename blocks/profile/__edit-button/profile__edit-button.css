@@ -9,6 +9,11 @@
     margin-left: 18px;
 }
 
+.profile__edit-button:hover {
+    opacity: 0.6;
+    transition: all 0.2s ease-in-out;
+}
+
 @media screen and (max-width: 600px) {
     .profile__edit-button {
         min-width: 18px;
