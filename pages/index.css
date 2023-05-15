@@ -17,3 +17,10 @@
 @import url('../blocks/profile/__info-profession/profile__info-profession.css');
 @import url('../blocks/profile/__add-button/profile__add-button.css');
 @import url('../blocks/profile/__add-button/_logo/profile__add-button_logo.css');
+
+/*Блоки elements и element*/
+@import url('../blocks/elements/elements.css');
+@import url('../blocks/element/element.css');
+@import url('../blocks/element/__pic/element__pic.css');
+@import url('../blocks/element/__name/element__name.css');
+@import url('../blocks/element/__reaction/element__reaction.css');

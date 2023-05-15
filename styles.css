@@ -6,6 +6,69 @@
 
 
 
+
+
+
+
+
+
+
+/*.elements {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 361px;
+    gap: 20px 17px;
+    max-width: 880px;
+    margin: 51px auto 56px;
+}
+
+@media screen and (max-width: 925px) {
+    .elements {
+        grid-template-columns: repeat(2, auto);
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .elements {
+        grid-template-columns: none;
+        justify-content: center;
+        margin: 36px auto 48px;
+    }
+}
+
+.element {
+    display: flex;
+    flex-direction: column;
+    max-width: 282px;
+    background: #FFFFFF;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.element__pic {
+    height: 78.12%;
+    object-fit: cover;
+}
+
+.element__name {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 25px 15px 31px 21px;
+    color: #000000;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 1;
+}
+
+.element__reaction {
+    max-width: 22px;
+    max-height: 19px;
+}*/
+
+
+
 /*.profile {
     display: flex;
     align-items: center;
