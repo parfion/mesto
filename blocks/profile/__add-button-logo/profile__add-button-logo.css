@@ -1,14 +1,14 @@
-.profile__add-button_logo {
+.profile__add-button-logo {
     max-width: 22px;
     margin: 0 auto;
 }
 
-.profile__add-button_logo:hover {
+.profile__add-button-logo:hover {
     opacity: 0.6;
 }
 
 @media screen and (max-width: 600px) {
-    .profile__add-button_logo {
+    .profile__add-button-logo {
         max-width: 16px;
     }
 }

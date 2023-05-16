@@ -11,12 +11,13 @@
 @import url('../blocks/profile/profile.css');
 @import url('../blocks/profile/__avatar/profile__avatar.css');
 @import url('../blocks/profile/__info/profile__info.css');
+@import url('../blocks/profile/__name-flex/profile__name-flex.css');
 @import url('../blocks/profile/__info-name/profile__info-name.css');
 @import url('../blocks/profile/__edit-button/profile__edit-button.css');
-@import url('../blocks/profile/__edit-button/_logo/profile__edit-button_logo.css');
+@import url('../blocks/profile/__edit-button-logo/profile__edit-button-logo.css');
 @import url('../blocks/profile/__info-profession/profile__info-profession.css');
 @import url('../blocks/profile/__add-button/profile__add-button.css');
-@import url('../blocks/profile/__add-button/_logo/profile__add-button_logo.css');
+@import url('../blocks/profile/__add-button-logo/profile__add-button-logo.css');
 
 /*Блоки elements и element*/
 @import url('../blocks/elements/elements.css');
@@ -29,3 +30,13 @@
 /*Блок footer*/
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/footer/__text/footer__text.css');
+
+/*Блок popup*/
+@import url('../blocks/popup/popup.css');
+@import url('../blocks/popup/__container/popup__container.css');
+@import url('../blocks/popup/__form/popup__form.css');
+@import url('../blocks/popup/__title/popup__title.css');
+@import url('../blocks/popup/__name/popup__name.css');
+@import url('../blocks/popup/__profession/popup__profession.css');
+@import url('../blocks/popup/__save-button/popup__save-button.css');
+@import url('../blocks/popup/__close-button/popup__close-button.css');

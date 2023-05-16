@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./pages/index.css">
-    <link rel="stylesheet" href="./styles.css"> <!--Убрать в конце работы-->
+    <script src="./index.js" defer></script>
     <title>Место</title>
 </head>
 
@@ -19,14 +19,16 @@
         <section class="profile">
             <img class="profile__avatar" alt="Жак-Ив Кусто" src="./images/Avatar.png">
             <div class="profile__info">
-                <h1 class="profile__info-name">Жак-Ив Кусто</h1>
-                <button class="profile__edit-button">
-                    <img class="profile profile__edit-button_logo" alt="карандаш" src="./images/logo_2.svg">
+                <div class="profile__name-flex">
+                    <h1 class="profile__info-name">Жак-Ив Кусто</h1>
+                    <button class="profile__edit-button">
+                    <img class="profile__edit-button-logo" alt="карандаш" src="./images/logo_2.svg">
                 </button>
+            </div>
                 <p class="profile__info-profession">Исследователь океана</p>
             </div>
             <button class="profile__add-button">
-                <img class="profile profile__add-button_logo" alt="плюс" src="./images/logo_3.svg">
+                <img class="profile__add-button-logo" alt="плюс" src="./images/logo_3.svg">
             </button>
         </section>
 
@@ -85,5 +87,18 @@
     <footer class="footer">
         <p class="footer__text">© 2023 Mesto Russia</p>
     </footer>
+
+    <div class="popup">
+        <div class="popup__container">
+            <form class="popup__form">
+                <h2 class="popup__title">Редактировать профиль</h2>
+                <input class="popup__name" type="text">
+                <input class="popup__profession" type="text">
+                <button class="popup__save-button" type="submit">Сохранить</button>
+            </form>
+
+            <button class="popup__close-button"></button>
+        </div>
+    </div>
 </body>
 </html> 

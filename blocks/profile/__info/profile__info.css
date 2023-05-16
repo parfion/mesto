@@ -1,13 +1,10 @@
 .profile__info {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 336px;
+    max-width: 340px;
     max-height: 73px;
 }
 
 @media screen and (max-width: 600px) {
     .profile__info {
-        justify-content: center;
         margin: 22.25px auto 36px;
         max-width: 282px;
     }

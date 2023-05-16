@@ -12,6 +12,7 @@
     .profile__info-profession {
         font-size: 14px;
         line-height: 1;
-        margin: 14px 0 0;
+        margin: 14px auto 0;
+        max-width: max-content;
     }
 }
