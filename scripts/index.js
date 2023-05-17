@@ -7,7 +7,6 @@ const profileInfoProfessionEl = document.querySelector('.profile__info-professio
 const popupProfessionEl = document.querySelector('.popup__profession');
 const popupFormEl = document.querySelector('.popup__form');
 
-
 profileEditButtonEl.addEventListener('click', function() {
     openPopup(editPopupEl); 
 });
@@ -27,7 +26,6 @@ popupFormEl.addEventListener('submit', function(event) {
 
     closePopup(editPopupEl);
 });
-
 
 function openPopup(popupEl) {
     popupEl.classList.add('popup_opened'); 
