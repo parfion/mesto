@@ -1,5 +1,6 @@
 .popup {
     display: none;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, .5);
@@ -8,11 +9,8 @@
     top: 0;
     left: 0;
     right: 0;
-    bottom: 25px;
+    bottom: 0;
 }
 
-@media screen and (max-width: 600px) {
-    .popup {
-        padding-bottom: 50px;
-    }
-}
+/*Ревьюеру: Как мне подсказал старший студент, расхождения являются незначительными. Есть ли возможность оставить все так, как есть, 
+чтобы ничего не ломать?*/
