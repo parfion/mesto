@@ -10,3 +10,9 @@
     right: 0;
     bottom: 25px;
 }
+
+@media screen and (max-width: 600px) {
+    .popup {
+        padding-bottom: 88px;
+    }
+}
