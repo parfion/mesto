@@ -24,7 +24,7 @@
                     </div>
                     <p class="profile__info-profession">Исследователь океана</p>
                 </div>
-                <button class="profile__add-button"></button>
+                <button class="profile__add-button" type="button"></button>
             </section>
 
             <section class="elements">
@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="element">
-                    <img class="element__pic" alt="лодка" src="./images/Kareliya.jpg">
+                    <img class="element__pic" alt="лодка" src="./images/Kareliya.jpg" />
                     <div class="element__info">
                         <h2 class="element__name">Карелия</h2>
                         <button class="element__reaction" type="button"></button>
@@ -86,10 +86,8 @@
             <div class="popup__container">
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <form class="popup__form" name="form">
-                    <div class="popup__input">
-                        <input class="popup__name" name="name" type="text">
-                        <input class="popup__profession" name="profession" type="text">
-                    </div>
+                    <input class="popup__input popup__input_name_value" name="name" type="text">
+                    <input class="popup__input popup__input_profession_value" name="profession" type="text">
                     <button class="popup__save-button" type="submit">Сохранить</button>
                 </form>
 

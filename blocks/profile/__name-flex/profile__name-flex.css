@@ -1,3 +1,4 @@
 .profile__name-flex{
     display: flex;
+    letter-spacing: 0.5px;
 }
