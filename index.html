@@ -27,61 +27,16 @@
                 <button class="profile__add-button" type="button"></button>
             </section>
 
-            <section class="elements">
+            <template class="elements">
                 <div class="element">
                     <button class="element__trash" type="button"></button>
-                    <img class="element__pic" alt="горы и лес Алтая" src="./images/Altay.jpg">
+                    <img class="element__pic" alt="картинка для карточки">
                     <div class="element__info">
                         <h2 class="element__name">Алтай</h2>
                         <button class="element__reaction" type="button"></button>
                     </div>
                 </div>
-
-                <div class="element">
-                    <button class="element__trash" type="button"></button>
-                    <img class="element__pic" alt="озеро Байкал" src="./images/Baikal.jpg">
-                    <div class="element__info">
-                        <h2 class="element__name">Байкал</h2>
-                        <button class="element__reaction" type="button"></button>
-                    </div>
-                </div>
-
-                <div class="element">
-                    <button class="element__trash" type="button"></button>
-                    <img class="element__pic" alt="зеленые горы" src="./images/Dagestan.jpg">
-                    <div class="element__info">
-                        <h2 class="element__name">Дагестан</h2>
-                        <button class="element__reaction" type="button"></button>
-                    </div>
-                </div>
-
-                <div class="element">
-                    <button class="element__trash" type="button"></button>
-                    <img class="element__pic" alt="медведь у озера" src="./images/Kamchatka.jpg">
-                    <div class="element__info">
-                        <h2 class="element__name">Камчатка</h2>
-                        <button class="element__reaction" type="button"></button>
-                    </div>
-                </div>
-
-                <div class="element">
-                    <button class="element__trash" type="button"></button>
-                    <img class="element__pic" alt="лодка" src="./images/Kareliya.jpg">
-                    <div class="element__info">
-                        <h2 class="element__name">Карелия</h2>
-                        <button class="element__reaction" type="button"></button>
-                    </div>
-                </div>
-
-                <div class="element">
-                    <button class="element__trash" type="button"></button>
-                    <img class="element__pic" alt="фонтаны Петергофа" src="./images/Petergof.jpg">
-                    <div class="element__info">
-                        <h2 class="element__name">Петергоф</h2>
-                        <button class="element__reaction" type="button"></button>
-                    </div>
-                </div>
-            </section>
+            </template>
         </main>
 
         <footer class="footer">
@@ -95,6 +50,19 @@
                     <input class="popup__input popup__input_value_name" name="name" type="text">
                     <input class="popup__input popup__input_value_profession" name="profession" type="text">
                     <button class="popup__save-button" type="submit">Сохранить</button>
+                </form>
+
+                <button class="popup__close-button" type="button"></button>
+            </div>
+        </div>
+
+        <div class="popup">
+            <div class="popup__container">
+                <h2 class="popup__title">Новое место</h2>
+                <form class="popup__form" name="form">
+                    <input class="popup__input popup__input_value_name" name="name" type="text" placeholder="Название">
+                    <input class="popup__input popup__input_value_profession" name="profession" type="url" placeholder="Ссылка на картинку">
+                    <button class="popup__save-button" type="submit">Создать</button>
                 </form>
 
                 <button class="popup__close-button" type="button"></button>
