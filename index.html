@@ -59,13 +59,21 @@
         <div class="popup popup__profile_add_button">
             <div class="popup__container">
                 <h2 class="popup__title">Новое место</h2>
-                <form class="popup__form popup__form_cards" name="formAdd">
+                <form class="popup__form popup__form_cards" name="form">
                     <input class="popup__input popup__input_value_name-card" name="name" type="text" placeholder="Название">
-                    <input class="popup__input popup__input_value_picture-card" name="profession" type="url" placeholder="Ссылка на картинку">
+                    <input class="popup__input popup__input_value_picture-card" name="link" type="url" placeholder="Ссылка на картинку">
                     <button class="popup__save-button" type="submit">Создать</button>
                 </form>
 
                 <button class="popup__close-button popup__close-button_add" type="button"></button>
+            </div>
+        </div>
+
+        <div id="popupImage" class="popup">
+            <div class="popup__open-picture">
+                <img class="popup__picture" alt="увеличенная картинка из карточки">
+                <p class="popup__name"></p>
+                <button class="popup__close-button popup__close-button_picture" type="button"></button>
             </div>
         </div>
     </body>
