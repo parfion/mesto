@@ -32,7 +32,7 @@
                     <button class="element__trash" type="button"></button>
                     <img class="element__pic" alt="картинка для карточки">
                     <div class="element__info">
-                        <h2 class="element__name">Алтай</h2>
+                        <h2 class="element__name"></h2>
                         <button class="element__reaction" type="button"></button>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
             <p class="footer__text">&copy; 2023 Mesto Russia</p>
         </footer>
 
-        <div class="popup">
+        <div class="popup popup__profile_edit_button">
             <div class="popup__container">
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <form class="popup__form" name="form">
@@ -56,16 +56,16 @@
             </div>
         </div>
 
-        <div class="popup">
+        <div class="popup popup__profile_add_button">
             <div class="popup__container">
                 <h2 class="popup__title">Новое место</h2>
-                <form class="popup__form" name="form">
-                    <input class="popup__input popup__input_value_name" name="name" type="text" placeholder="Название">
-                    <input class="popup__input popup__input_value_profession" name="profession" type="url" placeholder="Ссылка на картинку">
+                <form class="popup__form popup__form_cards" name="formAdd">
+                    <input class="popup__input popup__input_value_name-card" name="name" type="text" placeholder="Название">
+                    <input class="popup__input popup__input_value_picture-card" name="profession" type="url" placeholder="Ссылка на картинку">
                     <button class="popup__save-button" type="submit">Создать</button>
                 </form>
 
-                <button class="popup__close-button" type="button"></button>
+                <button class="popup__close-button popup__close-button_add" type="button"></button>
             </div>
         </div>
     </body>

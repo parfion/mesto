@@ -13,8 +13,3 @@
 .element__reaction:hover {
     opacity: 0.5;
 }
-
-.element__reaction:active {
-    background: url('../../../images/Like_active.svg');
-    opacity: 1;
-}
