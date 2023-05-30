@@ -85,7 +85,7 @@ const initialCards = [
   //6. Создал функию для заполнения карточки контентом
 
   function createCard(value) {
-    const newCloneCard = templateCard.cloneNode(true);                 //7. клонирую элементы карточки (true-полное клонирование) и присваиваю его переменной
+    const newCloneCard = templateCard.cloneNode(true);                 //7. клонирую элементы карточки (true-полное клонирование)
     const nameCard = newCloneCard.querySelector('.element__name');     //8. нахожу элемент в карточке, в который будет записан заголовок
     const linkCard = newCloneCard.querySelector('.element__pic');      //9. нахожу элемент в карточке, в который будет записана картинка
 
@@ -164,8 +164,3 @@ const initialCards = [
     });
     templateCards.prepend(addNewCard);            //10. добавляю карточку в начало блока
   });
-  
-
-
-
-  
