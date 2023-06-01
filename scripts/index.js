@@ -9,13 +9,15 @@ const profileInfoProfessionEl = document.querySelector('.profile__info-professio
 const popupProfessionEl = document.querySelector('.popup__input_value_profession');
 const popupFormEl = document.querySelector('.popup__form');
 
-profileEditButtonEl.addEventListener('click', function() {
-    openPopup(editPopupEl); 
-});
+//      Const для popupImage
+const popupImage = document.querySelector('#popupImage');                           //2. нахожу попап открытия картинки
+const closeBigPicture = document.querySelector('.popup__close-button_picture');     //3. нахожу кнопки закрытия попапа
+const bigPicrure = document.querySelector('.popup__picture');                       //6. нахожу класс с картинкой в попапе
+const bigPictureName = document.querySelector('.popup__name');                      //7. нахожу класс с названием в попапе
 
-popupCloseButtonEl.addEventListener('click', function() {
-    closePopup(editPopupEl);
-});
+profileEditButtonEl.addEventListener('click', () => openPopup(editPopupEl));
+
+popupCloseButtonEl.addEventListener('click', () => closePopup(editPopupEl));
 
 popupNameEl.value = profileInfoNameEl.textContent;
 popupProfessionEl.value = profileInfoProfessionEl.textContent;
@@ -38,35 +40,6 @@ function closePopup(popupEl) {
 }
 
 //    ДОБАВЛЕНИЕ 6 СТАНДАРТНЫХ КАРТОЧЕК
-
-//  Массив с названиями и картинками карточек
-
-const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ]; 
 
 const templateCards = document.querySelector('.elements');             //1. Нахожу блок, в который будут добавляться карточки
 const templateContent = templateCards.content;                         //2. Нахожу содержимое блока
@@ -105,29 +78,19 @@ function createCard(value) {
 
     const trashButton = newCloneCard.querySelector('.element__trash');            //1. нахожу все кнопки удаления карточки
     trashButton.addEventListener('click', function() {                            //2. вешаю на клик кноки действие
-        templateCards.removeChild(newCloneCard);                                  //3. удаляю элемент(карточку) у блока(родителя) 
+      templateCards.removeChild(newCloneCard);                                    //3. удаляю элемент(карточку) у блока(родителя) 
     });
 
     //    ОТКРЫТИЕ POPUP С УВЕЛИЧЕННОЙ КАРТИНКОЙ
-
     
     const pictureButton = newCloneCard.querySelector('.element__pic');                  //1. нахожу все картинки на карточках
-    const popupImage = document.querySelector('#popupImage');                           //2. нахожу попап открытия картинки
-    const closeBigPicture = document.querySelector('.popup__close-button_picture');     //3. нахожу кнопки закрытия попапа
+    
 
     pictureButton.addEventListener('click', function() {                    //4. вешаю слушатель на нажатие картинки
         openPopup(popupImage);                                              //5. вызываю функцию открытия попапа
 
-        const bigPicrure = document.querySelector('.popup__picture');       //6. нахожу класс с картинкой в попапе
-        const bigPictureName = document.querySelector('.popup__name');      //7. нахожу класс с названием в попапе
-      
-
         bigPicrure.src = linkCard.src;                                      //8. большой картинкой для попапа будет картинка из карточки
         bigPictureName.textContent = nameCard.textContent;                  //9. текстом для попапа будет название из карточки
-    });
-    
-    closeBigPicture.addEventListener('click', function() {                  //10. вешаю слушатель на кнопку закрытия попапа
-        closePopup(popupImage);                                             //11. вызываю функцию закрытия попапа
     });
 
     return newCloneCard;                                                    //12. возвращаю карточку с элементами
@@ -139,13 +102,9 @@ const profileAddButtonEl = document.querySelector('.profile__add-button');
 const addPopupEl = document.querySelector('#addButton');
 const closeButtonAdd = document.querySelector('.popup__close-button_add');
 
-profileAddButtonEl.addEventListener('click', () => {
-    openPopup(addPopupEl);
-});
+profileAddButtonEl.addEventListener('click', () => openPopup(addPopupEl));
 
-closeButtonAdd.addEventListener('click', () => {
-    closePopup(addPopupEl);
-});
+closeButtonAdd.addEventListener('click', () => closePopup(addPopupEl));
 
 //    ДОБАВЛЕНИЕ КАРТОЧКИ
 
@@ -164,4 +123,10 @@ formCards.addEventListener('submit', (event) => {                               
     });
 
     templateCards.prepend(addNewCard);              //10. добавляю карточку в начало блока
+});
+
+//      ЗАКРЫТИЕ ПОПАПА С КАРТИНКОЙ
+
+closeBigPicture.addEventListener('click', function() {              //1. вешаю слушатель на кнопку закрытия попапа
+    closePopup(popupImage);                                         //2. вызываю функцию закрытия попапа
 });
