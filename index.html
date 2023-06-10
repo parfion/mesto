@@ -47,9 +47,13 @@
         <div id="editButton" class="popup">
             <div class="popup__container">
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <form class="popup__form" name="form">
-                    <input class="popup__input popup__input_value_name" name="name" type="text">
-                    <input class="popup__input popup__input_value_profession" name="profession" type="text">
+                <form id="form" class="popup__form" name="formProfile" novalidate>
+                    <input id="profile-input" class="popup__input popup__input_value_name" name="name" type="text" required 
+                    minlength="2" maxlength="40">
+                    <span class="profile-input-error form__input-error"></span>
+                    <input id="profession-input" class="popup__input popup__input_value_profession" name="profession" type="text" required 
+                    minlength="2" maxlength="200">
+                    <span class="profession-input-error form__input-error"></span>
                     <button class="popup__save-button" type="submit">Сохранить</button>
                 </form>
 
@@ -60,7 +64,7 @@
         <div id="addButton" class="popup">
             <div class="popup__container">
                 <h2 class="popup__title">Новое место</h2>
-                <form class="popup__form popup__form_cards" name="form">
+                <form class="popup__form popup__form_cards" name="formCard">
                     <input class="popup__input popup__input_value_name-card" name="name" type="text" placeholder="Название">
                     <input class="popup__input popup__input_value_picture-card" name="link" type="url" placeholder="Ссылка на картинку">
                     <button class="popup__save-button" type="submit">Создать</button>
