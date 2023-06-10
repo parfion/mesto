@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./pages/index.css">
+        <script src="./scripts/validate.js" defer></script>
         <script src="./scripts/cards.js" defer></script>
         <script src="./scripts/index.js" defer></script>
         <title>Место</title>
@@ -47,12 +48,12 @@
         <div id="editButton" class="popup">
             <div class="popup__container">
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <form id="form" class="popup__form" name="formProfile" novalidate>
+                <form class="popup__form" name="formProfile" novalidate>
                     <input id="profile-input" class="popup__input popup__input_value_name" name="name" type="text" required 
                     minlength="2" maxlength="40">
                     <span class="profile-input-error form__input-error"></span>
-                    <input id="profession-input" class="popup__input popup__input_value_profession" name="profession" type="text" required 
-                    minlength="2" maxlength="200">
+                    <input id="profession-input" class="popup__input popup__input_value_profession" name="profession" type="text" 
+                    required minlength="2" maxlength="200">
                     <span class="profession-input-error form__input-error"></span>
                     <button class="popup__save-button" type="submit">Сохранить</button>
                 </form>
@@ -64,9 +65,13 @@
         <div id="addButton" class="popup">
             <div class="popup__container">
                 <h2 class="popup__title">Новое место</h2>
-                <form class="popup__form popup__form_cards" name="formCard">
-                    <input class="popup__input popup__input_value_name-card" name="name" type="text" placeholder="Название">
-                    <input class="popup__input popup__input_value_picture-card" name="link" type="url" placeholder="Ссылка на картинку">
+                <form class="popup__form popup__form_cards" name="formCard" novalidate>
+                    <input id="card-name-input" class="popup__input popup__input_value_name-card" name="name" type="text" 
+                    placeholder="Название" required minlength="2" maxlength="30">
+                    <span class="card-name-input-error form__input-error"></span>
+                    <input id="card-link-input" class="popup__input popup__input_value_picture-card" name="link" type="url" 
+                    placeholder="Ссылка на картинку" required>
+                    <span class="card-link-input-error form__input-error"></span>
                     <button class="popup__save-button" type="submit">Создать</button>
                 </form>
 

@@ -39,7 +39,7 @@ function closePopup(popupEl) {
     popupEl.classList.remove('popup_opened');
 }
 
-//    ДОБАВЛЕНИЕ 6 СТАНДАРТНЫХ КАРТОЧЕК
+/////    ДОБАВЛЕНИЕ 6 СТАНДАРТНЫХ КАРТОЧЕК
 
 const templateCards = document.querySelector('.elements');             //1. Нахожу блок, в который будут добавляться карточки
 const templateContent = templateCards.content;                         //2. Нахожу содержимое блока
@@ -96,7 +96,7 @@ function createCard(value) {
     return newCloneCard;                                                    //12. возвращаю карточку с элементами
   };
 
-//    ОТКРЫТИЕ И ЗАКРЫТИЕ POPUP ДЛЯ ДОБАВЛЕНИЯ НОВЫХ КАРТОЧЕК
+/////   ОТКРЫТИЕ И ЗАКРЫТИЕ POPUP ДЛЯ ДОБАВЛЕНИЯ НОВЫХ КАРТОЧЕК
 
 const profileAddButtonEl = document.querySelector('.profile__add-button');
 const addPopupEl = document.querySelector('#addButton');
@@ -106,7 +106,7 @@ profileAddButtonEl.addEventListener('click', () => openPopup(addPopupEl));
 
 closeButtonAdd.addEventListener('click', () => closePopup(addPopupEl));
 
-//    ДОБАВЛЕНИЕ КАРТОЧКИ
+/////    ДОБАВЛЕНИЕ КАРТОЧКИ
 
 const nameCard = document.querySelector('.popup__input_value_name-card');             //1. нахожу поле, в котором пользователь указывает имя
 const picturelinkCard = document.querySelector('.popup__input_value_picture-card');   //2. нахожу поле, в котором пользователь указывает ссылку на картинку
@@ -125,82 +125,8 @@ formCards.addEventListener('submit', (event) => {                               
     templateCards.prepend(addNewCard);              //10. добавляю карточку в начало блока
 });
 
-//      ЗАКРЫТИЕ ПОПАПА С КАРТИНКОЙ
+/////      ЗАКРЫТИЕ ПОПАПА С КАРТИНКОЙ
 
 closeBigPicture.addEventListener('click', function() {              //1. вешаю слушатель на кнопку закрытия попапа
     closePopup(popupImage);                                         //2. вызываю функцию закрытия попапа
 });
-
-/////       ВАЛИДАЦИЯ ФОРМЫ РЕДАКТИРОВАТЬ ПРОФИЛЬ
-
-const form = document.querySelector('#form');
-const formInput = form.querySelector('.popup__input');
-const formError = form.querySelector(`.${formInput.id}-error`);
-
-const showInputError = (formElement, inputElement, errorMessage) => {
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-
-    inputElement.classList.add('popup_type-error');
-    errorElement.textContent = errorMessage;
-    errorElement.classList.add('form__input-error_active');
-};
-
-const hideInputError = (formElement, inputElement) => {
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-
-    inputElement.classList.remove('popup_type-error');
-    errorElement.classList.remove('form__input-error_active');
-    errorElement.textContent = '';
-};
-
-const checkInputValidity = (formElement, inputElement) => {
-    if(!inputElement.validity.valid) {
-        showInputError(formElement, inputElement, inputElement.validationMessage);
-    }
-    else {
-        hideInputError(formElement, inputElement);
-    };
-}
-
-const hasInvalidInput = (inputList) => {
-    return inputList.some((inputElement) => {
-        return !inputElement.validity.valid
-    });
-};
-
-const toggleButtonState = (inputList, buttonElement) => {
-    
-    if (hasInvalidInput(inputList)) {
-        buttonElement.classList.add('popup_button_inactive');
-        buttonElement.setAttribute('disabled', 'true');
-    } else {
-        buttonElement.classList.remove('popup_button_inactive');
-        buttonElement.removeAttribute('disabled');
-    };
-};
-
-const setEventListeners = (formElement) => {
-    const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-    const buttonElement = formElement.querySelector('.popup__save-button');
-
-    inputList.forEach((inputElement) => {
-        inputElement.addEventListener('input', () => {
-            checkInputValidity(formElement, inputElement)
-
-            toggleButtonState(inputList, buttonElement);
-        });
-    });
-}; 
-
-function enableValidation() {
-    const formtList = Array.from(document.querySelectorAll('.popup__form'));
-     formtList.forEach((formElement) => {
-      formElement.addEventListener('submit', function (evt) {
-        evt.preventDefault();
-      });
-       setEventListeners(formElement);
-    });
-  };
-
-enableValidation()
-
