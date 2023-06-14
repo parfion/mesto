@@ -1,4 +1,4 @@
-//    POPUP РЕДАКТИРОВАНИЯ ПРОФАЙЛА
+//  переменные для попапа редактирования профиля
 
 const profileEditButtonEl = document.querySelector('.profile__edit-button');
 const editPopupEl = document.querySelector('#editButton');
@@ -9,124 +9,190 @@ const profileInfoProfessionEl = document.querySelector('.profile__info-professio
 const popupProfessionEl = document.querySelector('.popup__input_value_profession');
 const popupFormEl = document.querySelector('.popup__form');
 
-//      Const для popupImage
-const popupImage = document.querySelector('#popupImage');                           //2. нахожу попап открытия картинки
-const closeBigPicture = document.querySelector('.popup__close-button_picture');     //3. нахожу кнопки закрытия попапа
-const bigPicrure = document.querySelector('.popup__picture');                       //6. нахожу класс с картинкой в попапе
-const bigPictureName = document.querySelector('.popup__name');                      //7. нахожу класс с названием в попапе
+//  переменные для попапа с картинкой
 
-profileEditButtonEl.addEventListener('click', () => openPopup(editPopupEl));
+const popupImage = document.querySelector('#popupImage');                           
+const closeBigPicture = document.querySelector('.popup__close-button_picture');     
+const bigPicrure = document.querySelector('.popup__picture');                       
+const bigPictureName = document.querySelector('.popup__name');                     
+
+
+//  ф-я-обработчик (СЛУШАТЕЛЬ) для кнопки редактирования профайла (открытие попап)
+
+profileEditButtonEl.addEventListener('click', () => {
+    openPopup(editPopupEl);
+    valuesInput();
+});
+
+//  ф-я-обработчик (СЛУШАТЕЛЬ) для кнопки редактирования профайла (закрытие попап)
 
 popupCloseButtonEl.addEventListener('click', () => closePopup(editPopupEl));
 
-popupNameEl.value = profileInfoNameEl.textContent;
-popupProfessionEl.value = profileInfoProfessionEl.textContent;
+//  ф-я, которая задает значения инпутам, при открытии попапа
+
+function valuesInput() {
+    popupNameEl.value = profileInfoNameEl.textContent;                // значением первого инпута будет имя профиля из html
+    popupProfessionEl.value = profileInfoProfessionEl.textContent;    // значением второго инпута будет название професси из html
+};
+valuesInput();    //  сразу, при загрузке страницы вызываю ф-ю
+
+//   ф-я отправки формы на сервер
 
 popupFormEl.addEventListener('submit', function(event) {
-    event.preventDefault();
+    event.preventDefault();                                           // отменяю стандартное действие сабмита
 
-    profileInfoNameEl.textContent = popupNameEl.value;
+    profileInfoNameEl.textContent = popupNameEl.value;                // применяю значения инпута в профиле
     profileInfoProfessionEl.textContent = popupProfessionEl.value;
 
-    closePopup(editPopupEl);
+    closePopup(editPopupEl);                                          // закрываю попап, сохраняя введенные данные
 });
 
+//  ф-я (УНИВЕРСАЛЬНАЯ) открытия любого из попапов
+
 function openPopup(popupEl) {
-    popupEl.classList.add('popup_opened'); 
+    popupEl.classList.add('popup_opened');                      // добавляю класс открытого попапа
+    document.addEventListener('keydown', closePopupEsc);        // вешаю слушатель на весь документ (вызыва ф-ю закрытия попапа на Esc)
+    document.addEventListener('click', closePopupOverlay);      // вешаю слушатель на весь документ (вызыва ф-ю закрытия попапа на Overlay)
 };
+
+//  ф-я (УНИВЕРСАЛЬНАЯ) закрытия любого из попапов
 
 function closePopup(popupEl) {
     popupEl.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closePopupEsc);
+    document.removeEventListener('click', closePopupOverlay);
 }
+// --------------------------------------------------------------------------------------- //
 
 /////    ДОБАВЛЕНИЕ 6 СТАНДАРТНЫХ КАРТОЧЕК
 
-const templateCards = document.querySelector('.elements');             //1. Нахожу блок, в который будут добавляться карточки
-const templateContent = templateCards.content;                         //2. Нахожу содержимое блока
-const templateCard = templateContent.querySelector('.element');        //3. Нахожу содержимое карточки
+// 1. переменные для попапа с добавлением карточек 
 
-//4. Прохожусь по каждому элементу массива
+const templateCards = document.querySelector('.elements');             //1.1 нахожу блок, в который будут добавляться карточки
+const templateContent = templateCards.content;                         //1.2 Нахожу содержимое блока
+const templateCard = templateContent.querySelector('.element');        //1.3 Нахожу содержимое карточки
 
-initialCards.forEach(function (item) {
-    createCard(item);                          //5. обращаюсь к функции, которую определяю ниже
-
-    const newCard = createCard(item);          //13. присваиваю обновленные карточки новой переменной
-    //console.log(newCloneCards);              
-    templateCards.append(newCard);             //15. добавляю карточки на страницу
-});
-
-//6. Создал функию для заполнения карточки контентом
+//  2. ф-я заполнения карточки контентом (клоинирование)
 
 function createCard(value) {
-    const newCloneCard = templateCard.cloneNode(true);                 //7. клонирую элементы карточки (true-полное клонирование)
-    const nameCard = newCloneCard.querySelector('.element__name');     //8. нахожу элемент в карточке, в который будет записан заголовок
-    const linkCard = newCloneCard.querySelector('.element__pic');      //9. нахожу элемент в карточке, в который будет записана картинка
+    const newCloneCard = templateCard.cloneNode(true);                 //2.1 клонирую элементы карточки (true-полное клонирование)
+    const nameCard = newCloneCard.querySelector('.element__name');     //2.2 нахожу элемент в карточке, в который будет записан заголовок
+    const linkCard = newCloneCard.querySelector('.element__pic');      //2.3 нахожу элемент в карточке, в который будет записана картинка
 
-    nameCard.textContent = value.name;                                 //10. контентом для заголовка в карточке будет имя из массива
-    linkCard.src = value.link;                                         //11. контентом для заголовка в карточке будет ссылка из массива
+    nameCard.textContent = value.name;                                 //2.4 контентом для заголовка в карточке будет имя из массива
+    linkCard.src = value.link;                                         //2.5 контентом для заголовка в карточке будет ссылка из массива
 
     //    ЛАЙК КАРТОЧКИ
 
-    const likeButton = newCloneCard.querySelector('.element__reaction');        //1. нахожу все кнопки лайка
-    //console.log(likeButton);
+    const likeButton = newCloneCard.querySelector('.element__reaction');       // нахожу все кнопки лайка
 
-    likeButton.addEventListener('click', function () {                          //2. добавляю на них слушатель
-        likeButton.classList.toggle('element__reaction_like');                  //3. на клик вызывается функция, которая добавляет класс черного лайка
+    //  5. вешаю слушатель на кнопку лайка
+    likeButton.addEventListener('click', function () {                          
+        likeButton.classList.toggle('element__reaction_like');      //5.1 на клик вызывается функция, которая добавляет класс черного лайка
     });
 
     //    УДАЛЕНИЕ КАРТОЧКИ
 
-    const trashButton = newCloneCard.querySelector('.element__trash');            //1. нахожу все кнопки удаления карточки
-    trashButton.addEventListener('click', function() {                            //2. вешаю на клик кноки действие
-      templateCards.removeChild(newCloneCard);                                    //3. удаляю элемент(карточку) у блока(родителя) 
+    const trashButton = newCloneCard.querySelector('.element__trash');       // нахожу все кнопки удаления карточки
+
+    //  6. вешаю слушатель на кнопку удаления карточки
+    trashButton.addEventListener('click', function() {                            
+      templateCards.removeChild(newCloneCard);                    //6.1 удаляю элемент(карточку) у блока(родителя) 
     });
 
     //    ОТКРЫТИЕ POPUP С УВЕЛИЧЕННОЙ КАРТИНКОЙ
     
-    const pictureButton = newCloneCard.querySelector('.element__pic');                  //1. нахожу все картинки на карточках
+    const pictureButton = newCloneCard.querySelector('.element__pic');      // нахожу все картинки на карточках
     
+    //  7. вешаю слушатель на нажатие картинки
+    pictureButton.addEventListener('click', function() {                    
+        openPopup(popupImage);                                              //7.1 вызываю функцию открытия попапа
 
-    pictureButton.addEventListener('click', function() {                    //4. вешаю слушатель на нажатие картинки
-        openPopup(popupImage);                                              //5. вызываю функцию открытия попапа
-
-        bigPicrure.src = linkCard.src;                                      //8. большой картинкой для попапа будет картинка из карточки
-        bigPictureName.textContent = nameCard.textContent;                  //9. текстом для попапа будет название из карточки
+        bigPicrure.src = linkCard.src;                                      //7.2 большой картинкой для попапа будет картинка из карточки
+        bigPictureName.textContent = nameCard.textContent;                  //7.3 текстом для попапа будет название из карточки
     });
 
-    return newCloneCard;                                                    //12. возвращаю карточку с элементами
+    //  3. ВОЗВРАЩАЮ УЖЕ ЗАПОЛНЕННУЮ КАРТОЧКУ
+    
+    return newCloneCard;                                                    
   };
 
-/////   ОТКРЫТИЕ И ЗАКРЫТИЕ POPUP ДЛЯ ДОБАВЛЕНИЯ НОВЫХ КАРТОЧЕК
+//4. прохожусь по каждому элементу массива
+
+initialCards.forEach(function (item) {
+  createCard(item);                          //4.1 ВЫЗЫВАЮ Ф-Ю ЗАПОЛНЕННОЙ КАРТОЧКИ
+
+  const newCard = createCard(item);          //4.2 присваиваю эту функцию новой переменной
+  //console.log(newCloneCards);              
+  templateCards.append(newCard);             //4.3 ДОБАВЛЯЮ КАРТОЧКИ НА СТРАНИЦУ (В HTML)
+});
+  
+
+//   ОТКРЫТИЕ И ЗАКРЫТИЕ POPUP ДЛЯ ДОБАВЛЕНИЯ НОВЫХ КАРТОЧЕК
 
 const profileAddButtonEl = document.querySelector('.profile__add-button');
 const addPopupEl = document.querySelector('#addButton');
 const closeButtonAdd = document.querySelector('.popup__close-button_add');
 
-profileAddButtonEl.addEventListener('click', () => openPopup(addPopupEl));
+//  8. вешаю слушатель на кнопку добавления новой карточки (открытие попапа)
+
+profileAddButtonEl.addEventListener('click', () => openPopup(addPopupEl));    
+
+//  9. вешаю слушатель на кнопку добавления новой карточки (закрытие попапа)
 
 closeButtonAdd.addEventListener('click', () => closePopup(addPopupEl));
 
-/////    ДОБАВЛЕНИЕ КАРТОЧКИ
+//     ДОБАВЛЕНИЕ НОВОЙ КАРТОЧКИ
 
-const nameCard = document.querySelector('.popup__input_value_name-card');             //1. нахожу поле, в котором пользователь указывает имя
-const picturelinkCard = document.querySelector('.popup__input_value_picture-card');   //2. нахожу поле, в котором пользователь указывает ссылку на картинку
-const formCards = document.querySelector('.popup__form_cards')                        //3. нахожу форму
+const nameCard = document.querySelector('.popup__input_value_name-card');             //10.1 нахожу поле, в котором пользователь указывает имя
+const picturelinkCard = document.querySelector('.popup__input_value_picture-card');   //10.2 нахожу поле, в котором пользователь указывает ссылку на картинку
+const formCards = document.querySelector('.popup__form_cards')                        //10.3 нахожу форму
 
-formCards.addEventListener('submit', (event) => {                                     //4. вешаю обработчик на форму
-    event.preventDefault();                                                           //5. убираю отправку формы
+//  10.4 ф-я для отправки формы на сервер
+
+formCards.addEventListener('submit', (event) => {                                     
+    event.preventDefault();                                                           //10.5 убираю перезагрузку страницы
   
-    closePopup(addPopupEl);                                                           //6. вызываю функцию закрытия попапа
+    closePopup(addPopupEl);                                                           //10.6 вызываю функцию закрытия попапа
 
-    const addNewCard = createCard({                 //7. вызываю функцию клонирования, в которую передаю новые аргументы
-        name: nameCard.value,                       //8. значением name будет введенное имя
-        link: picturelinkCard.value                 //9. значением name будет введенная ссылка
+    const addNewCard = createCard({                 //10.7 вызываю функцию клонирования, в которую передаю новые аргументы
+        name: nameCard.value,                       //10.8 значением name будет введенное имя
+        link: picturelinkCard.value                 //10.9 значением name будет введенная ссылка
     });
 
-    templateCards.prepend(addNewCard);              //10. добавляю карточку в начало блока
+    templateCards.prepend(addNewCard);              //10.10 ДОБАВЛЯЮ НОВУЮ СОЗДАННУЮ КАРТОЧКУ В НАЧАЛО БЛОКА
 });
 
-/////      ЗАКРЫТИЕ ПОПАПА С КАРТИНКОЙ
+//    ЗАКРЫТИЕ ПОПАПА С КАРТИНКОЙ
 
-closeBigPicture.addEventListener('click', function() {              //1. вешаю слушатель на кнопку закрытия попапа
-    closePopup(popupImage);                                         //2. вызываю функцию закрытия попапа
+// 11. вешаю слушатель на кнопку закрытия попапа
+
+closeBigPicture.addEventListener('click', function() {      
+    closePopup(popupImage);                                  //11.1 вызываю функцию закрытия попапа
 });
+
+//------------------------------------------------------------------------------------------------------- //
+
+//  ЗАКРЫТИЕ ПОПАПОВ НА ESC
+
+//  ф-я закрытия попапа на Esc (вызываю ее при открытии и закрытии попапа)
+
+function closePopupEsc(evt) {
+    const openedPopup = document.querySelector('.popup_opened');        // ищу открытый попап по открытому классу
+    if (evt.key === 'Escape') {                                         // если нажата клавиша Escape
+      closePopup(openedPopup);                                          // вызываю универсальную ф-ю закрытия попапа
+    };
+  };
+
+  //  ЗАКРЫТИЕ ПОПАПОВ НА OVERLAY
+
+  //  ф-я закрытия попапа на Overlay (вызываю ее при открытии и закрытии попапа)
+
+  function closePopupOverlay() {
+    const openedPopup = document.querySelector('.popup_opened');
+    openedPopup.addEventListener("click", (evt) => {                  // вешаю слушатель клика на открытый попап
+      if (evt.currentTarget === evt.target) {                         // если эл-т, где сработал обработчик(родитель)ю равен эл-ту, где возникло событие
+        closePopup(openedPopup)                                       // тогда закрываю попап
+      };
+    });
+  };
