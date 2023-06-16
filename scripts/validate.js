@@ -7,7 +7,7 @@ const validation = {
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__save-button',
     inactiveButtonClass: 'popup_button_inactive',
-    inputErrorClass: 'popup_type-error',
+    inputErrorClass: 'popup_input-error',
     errorClass: 'form__input-error_active'
   };
 
@@ -23,7 +23,7 @@ const showInputError = (formElement, inputElement, errorMessage, validation) => 
 
 //  2. ф-я удаления классов с ошибкой
 
-const hideInputError = (formElement, inputElement, validation) => {                             
+    const hideInputError = (formElement, inputElement, validation) => {                             
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);        //2.1 еще раз нахожу инпут по id
 
     inputElement.classList.remove(validation.inputErrorClass);                          //2.2 удаляю класс красного подчеркивания
@@ -83,11 +83,11 @@ const setEventListeners = (formElement, validation) => {
 
 function enableValidation(validation) {                                                                                    
     const formList = Array.from(document.querySelectorAll(validation.formSelector));         // 7.1 нахожу все формы и делаю из них массив
-     formList.forEach((formElement) => {                                                     // 7.2 прохожусь по каждому элементу массива с формами
-       setEventListeners(formElement, validation);                                           // 7.3 вызываю ф-ю обработчик во всех формах
+    formList.forEach((formElement) => {                                                      // 7.2 прохожусь по каждому элементу массива с формами
+        setEventListeners(formElement, validation);                                          // 7.3 вызываю ф-ю обработчик во всех формах
     }); 
   };
 
   //  8. ВЫЗОВ Ф-И ВАЛИДАЦИИ
 
-  enableValidation(validation);                     
+  enableValidation(validation);     

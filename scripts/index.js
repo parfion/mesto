@@ -21,7 +21,8 @@ const bigPictureName = document.querySelector('.popup__name');
 
 profileEditButtonEl.addEventListener('click', () => {
     openPopup(editPopupEl);
-    valuesInput();
+    valuesInput();                                                                            // задаю значения инпутам
+    document.querySelector('.popup__save-button').classList.remove('popup_button_inactive');  // удаляю класс неактивных стилей
 });
 
 //  ф-я-обработчик (СЛУШАТЕЛЬ) для кнопки редактирования профайла (закрытие попап)
@@ -34,6 +35,7 @@ function valuesInput() {
     popupNameEl.value = profileInfoNameEl.textContent;                // значением первого инпута будет имя профиля из html
     popupProfessionEl.value = profileInfoProfessionEl.textContent;    // значением второго инпута будет название професси из html
 };
+
 valuesInput();    //  сразу, при загрузке страницы вызываю ф-ю
 
 //   ф-я отправки формы на сервер
@@ -50,17 +52,19 @@ popupFormEl.addEventListener('submit', function(event) {
 //  ф-я (УНИВЕРСАЛЬНАЯ) открытия любого из попапов
 
 function openPopup(popupEl) {
-    popupEl.classList.add('popup_opened');                      // добавляю класс открытого попапа
-    document.addEventListener('keydown', closePopupEsc);        // вешаю слушатель на весь документ (вызыва ф-ю закрытия попапа на Esc)
-    document.addEventListener('click', closePopupOverlay);      // вешаю слушатель на весь документ (вызыва ф-ю закрытия попапа на Overlay)
-};
+    popupEl.classList.add('popup_opened');                        // добавляю класс открытого попапа
+    document.addEventListener('keydown', closePopupByEsc);        // вешаю слушатель на весь документ (вызыва ф-ю закрытия попапа на Esc)
+    document.addEventListener('click', closePopupByOverlay);      // вешаю слушатель на весь документ (вызыва ф-ю закрытия попапа на Overlay)
+  };
 
 //  ф-я (УНИВЕРСАЛЬНАЯ) закрытия любого из попапов
 
 function closePopup(popupEl) {
     popupEl.classList.remove('popup_opened');
-    document.removeEventListener('keydown', closePopupEsc);
-    document.removeEventListener('click', closePopupOverlay);
+    document.removeEventListener('keydown', closePopupByEsc);         
+    document.removeEventListener('click', closePopupByOverlay);
+    
+    deleteInputError();                                           // удаляю оишбки 
 }
 // --------------------------------------------------------------------------------------- //
 
@@ -123,7 +127,7 @@ initialCards.forEach(function (item) {
   createCard(item);                          //4.1 ВЫЗЫВАЮ Ф-Ю ЗАПОЛНЕННОЙ КАРТОЧКИ
 
   const newCard = createCard(item);          //4.2 присваиваю эту функцию новой переменной
-  //console.log(newCloneCards);              
+                
   templateCards.append(newCard);             //4.3 ДОБАВЛЯЮ КАРТОЧКИ НА СТРАНИЦУ (В HTML)
 });
   
@@ -136,7 +140,11 @@ const closeButtonAdd = document.querySelector('.popup__close-button_add');
 
 //  8. вешаю слушатель на кнопку добавления новой карточки (открытие попапа)
 
-profileAddButtonEl.addEventListener('click', () => openPopup(addPopupEl));    
+profileAddButtonEl.addEventListener('click', () => {
+  formCards.reset();
+  
+  openPopup(addPopupEl);
+});
 
 //  9. вешаю слушатель на кнопку добавления новой карточки (закрытие попапа)
 
@@ -150,8 +158,8 @@ const formCards = document.querySelector('.popup__form_cards')                  
 
 //  10.4 ф-я для отправки формы на сервер
 
-formCards.addEventListener('submit', (event) => {                                     
-    event.preventDefault();                                                           //10.5 убираю перезагрузку страницы
+formCards.addEventListener('submit', (evt) => {                                     
+    evt.preventDefault();                                                             //10.5 убираю перезагрузку страницы
   
     closePopup(addPopupEl);                                                           //10.6 вызываю функцию закрытия попапа
 
@@ -161,6 +169,8 @@ formCards.addEventListener('submit', (event) => {
     });
 
     templateCards.prepend(addNewCard);              //10.10 ДОБАВЛЯЮ НОВУЮ СОЗДАННУЮ КАРТОЧКУ В НАЧАЛО БЛОКА
+    evt.target.reset();
+    deleteInputError();
 });
 
 //    ЗАКРЫТИЕ ПОПАПА С КАРТИНКОЙ
@@ -177,9 +187,10 @@ closeBigPicture.addEventListener('click', function() {
 
 //  ф-я закрытия попапа на Esc (вызываю ее при открытии и закрытии попапа)
 
-function closePopupEsc(evt) {
+function closePopupByEsc(evt) {
     const openedPopup = document.querySelector('.popup_opened');        // ищу открытый попап по открытому классу
     if (evt.key === 'Escape') {                                         // если нажата клавиша Escape
+      
       closePopup(openedPopup);                                          // вызываю универсальную ф-ю закрытия попапа
     };
   };
@@ -188,11 +199,28 @@ function closePopupEsc(evt) {
 
   //  ф-я закрытия попапа на Overlay (вызываю ее при открытии и закрытии попапа)
 
-  function closePopupOverlay() {
+  function closePopupByOverlay() {
     const openedPopup = document.querySelector('.popup_opened');
     openedPopup.addEventListener("click", (evt) => {                  // вешаю слушатель клика на открытый попап
       if (evt.currentTarget === evt.target) {                         // если эл-т, где сработал обработчик(родитель)ю равен эл-ту, где возникло событие
-        closePopup(openedPopup)                                       // тогда закрываю попап
+        closePopup(openedPopup);                                      // тогда закрываю попап
       };
+    });
+  };
+
+  //  ф-я, которая убирает ошибки и их содержимое в элементах формы
+
+  function deleteInputError() {                                                                   
+    const inputList = Array.from(document.querySelectorAll('.popup__input'));
+    inputList.forEach((inputElement) => inputElement.classList.remove('popup_input-error'));
+
+    const spanList = Array.from(document.querySelectorAll('.form__type-error'));
+    spanList.forEach((spanElement) => spanElement.classList.remove('form__input-error_active'));
+    spanList.forEach((spanElement) => spanElement.textContent = '');
+
+    const buttonList = Array.from(document.querySelectorAll('.button'));
+    buttonList.forEach((buttonElement) => {
+      buttonElement.classList.add('popup_button_inactive');
+      buttonElement.setAttribute('disabled', 'true');
     });
   };
