@@ -1,33 +1,29 @@
- export const validation = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__save-button',
-    inactiveButtonClass: 'popup_button_inactive',
-    inputErrorClass: 'popup_input-error',
-    errorClass: 'form__input-error_active'
-  };
-
- export class FormValidator {
+export class FormValidator {
     constructor(validation, formElement) {
-        this._form = formElement;
         this._validation = validation;
-
+        this._form = formElement;
+        this._formSelector = validation.formSelector;
+        this._inputSelector = validation.inputSelector;
+        this._submitButtonSelector = validation.submitButtonSelector;
+        this._inactiveButtonClass = validation.inactiveButtonClass;
+        this._inputErrorClass = validation.inputErrorClass;
+        this._errorClass = validation.errorClass;
     }
 
     //   ф-я добавления классов с ошибкой
     _showInputError(inputElement, errorMessage) {              
         const errorElement = this._form.querySelector(`.${inputElement.id}-error`);    
-        inputElement.classList.add(this._validation.inputErrorClass);                         
+        inputElement.classList.add(this._inputErrorClass);                         
         errorElement.textContent = errorMessage;                                        
-        errorElement.classList.add(this._validation.errorClass);                              
+        errorElement.classList.add(this._errorClass);                              
     };
 
     //   ф-я удаления классов с ошибкой
     _hideInputError (inputElement) {                             
         const errorElement = this._form.querySelector(`.${inputElement.id}-error`);        
     
-        inputElement.classList.remove(this._validation.inputErrorClass);                          
-        errorElement.classList.remove(this._validation.errorClass);                               
+        inputElement.classList.remove(this._inputErrorClass);                          
+        errorElement.classList.remove(this._errorClass);                               
         errorElement.textContent = '';                                                      
     };
 
@@ -50,13 +46,13 @@
 
     //  ф-я добавления ошибок
     _addErrorClass (buttonElement)  {
-        buttonElement.classList.add(this._validation.inactiveButtonClass);                
+        buttonElement.classList.add(this._inactiveButtonClass);                
         buttonElement.setAttribute('disabled', 'true'); 
     }
     
     //  ф-я удаления ошибок
     _deleteErrorClass (buttonElement) {
-        buttonElement.classList.remove(this._validation.inactiveButtonClass);             
+        buttonElement.classList.remove(this._inactiveButtonClass);             
         buttonElement.removeAttribute('disabled'); 
     }
     
@@ -71,8 +67,8 @@
 
     //   функция-обработчик (СЛУШАТЕЛЬ) для всех инпутов
     _setEventListeners() {                                      
-        const inputList = Array.from(this._form.querySelectorAll(this._validation.inputSelector));       
-        const buttonElement = this._form.querySelector(this._validation.submitButtonSelector);           
+        const inputList = Array.from(this._form.querySelectorAll(this._inputSelector));       
+        const buttonElement = this._form.querySelector(this._submitButtonSelector);           
         
         this._toggleButtonState(inputList, buttonElement);                   
     

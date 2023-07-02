@@ -44,16 +44,26 @@ export class Card {
       });
   
       this._trashCard.addEventListener('click', () => {
-        this._element.remove();
+        this._deleteCardClick();
       });
   
       this._linkCard.addEventListener('click', () => {
-        openPicturePopup(this._name, this._link)
+        this._openPicturePopupClick();
       })
     }
   
     // метод ЛАЙКА карточки
     _handleLikeClick() {
       this._likeCard.classList.toggle('element__reaction_like');
-    }
+    };
+
+    //метод удаления карточки
+    _deleteCardClick() {
+      this._element.remove();
+    };
+
+    //метод открытия попапа с картинкой
+    _openPicturePopupClick() {
+      openPicturePopup(this._name, this._link);
+    };
   }
