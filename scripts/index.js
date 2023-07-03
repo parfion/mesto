@@ -45,8 +45,7 @@ const validation = {
 //    ОТКРЫТИЕ И ЗАКРЫТИЕ ПОПАПОВ
 //  POPUP ДЛЯ РЕДАКТИРОВАНИЯ ПРОФИЛЯ
 buttonOpenProfilePopup.addEventListener('click', () => {
-	popupEditForm.resetFormProfile(nameInputProfilePopup, buttonSaveProfilePopup);
-	popupEditForm.resetFormProfile(professionInputProfilePopup, buttonSaveProfilePopup);
+	  popupEditForm.resetValidation();
     openPopup(editPopup);
     valuesInput();                                                                           
 });
@@ -71,9 +70,9 @@ formProfilePopup.addEventListener('submit', function(event) {
 
 //   POPUP ДЛЯ ДОБАВЛЕНИЯ НОВЫХ КАРТОЧЕК
 buttonOpenCardPopup.addEventListener('click', () => {
-  popupAddform.resetFormCard(nameInputCardPopup, buttonAddNewCard);
-  popupAddform.resetFormCard(linkInputCardPopup, buttonAddNewCard);
+  popupAddform.resetValidation();
   formCardPopup.reset();
+  buttonAddNewCard.classList.add(validation.inactiveButtonClass);
   openPopup(cardPopup);
 });
 
