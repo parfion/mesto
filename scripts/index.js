@@ -46,6 +46,7 @@ const validation = {
 //  POPUP ДЛЯ РЕДАКТИРОВАНИЯ ПРОФИЛЯ
 buttonOpenProfilePopup.addEventListener('click', () => {
 	  popupEditForm.resetValidation();
+    buttonSaveProfilePopup.classList.remove(validation.inactiveButtonClass);
     openPopup(editPopup);
     valuesInput();                                                                           
 });
@@ -105,31 +106,34 @@ function closePopup(popupEl) {
 
 // --------------------------------------------------------------------------------------- //
 
-//  добавление 6 стандартных карточек
-initialCards.forEach((item) => {
-  // Создадим экземпляр карточки, передаём селектор темплейта при создании
-  const card = new Card(item, '.elements');
+//  ДОБАВЛЕНИЕ 6 СТАНДАРТНЫХ КАРТОЧЕК
+
+//  вынес создание экземпляра карточки в отдельную ф-ю
+function createCard(data, templateSelector) {
+  const card = new Card(data, templateSelector);
   // Создаём карточку и возвращаем наружу
   const cardElement = card.generateCard();
-  
+  return cardElement;
+}
+
+initialCards.forEach((item) => {
+  const cardElement = createCard(item, '.elements');
   // Добавляем в DOM
   document.querySelector('.elements').append(cardElement);
 }) 
 
 //     ДОБАВЛЕНИЕ НОВОЙ КАРТОЧКИ
 formCardPopup.addEventListener('submit', (evt) => {                                     
-  evt.preventDefault();                                                          
-  closePopup(cardPopup);                            
+  evt.preventDefault();                                                                                     
 
   const addNewCard = ({                
       name: nameInputCardPopup.value,                      
       link: linkInputCardPopup.value                 
   });
+  const newCard = createCard(addNewCard, '.elements');
 
-  const newCard = new Card(addNewCard, '.elements');
-  const newCardElement = newCard.generateCard();
-
-  templateCards.prepend(newCardElement);              
+  templateCards.prepend(newCard);
+  closePopup(cardPopup);               
   evt.target.reset();
 });
 
