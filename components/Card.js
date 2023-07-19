@@ -1,11 +1,12 @@
-import { openPicturePopup } from './index.js';
+//  Класс Card - отвечает за создание карточки
 
 export class Card {
-    constructor(data, templateSelector) {
+    constructor(data, templateSelector, handleCardClick ) {
       // name и link — приватные поля
       this._name = data.name;
       this._link = data.link;
       this._templateSelector = templateSelector; // записали селектор в приватное поле
+      this._handleCardClick = handleCardClick;    // ф-я открытия попапа большой картинки
     }
   
     _getTemplate() {
@@ -48,7 +49,7 @@ export class Card {
       });
   
       this._linkCard.addEventListener('click', () => {
-        this._openPicturePopupClick();
+        this._handleCardClick(this._name, this._link);
       })
     }
   
@@ -57,13 +58,8 @@ export class Card {
       this._likeCard.classList.toggle('element__reaction_like');
     };
 
-    //метод удаления карточки
+    //метод УДАЛЕНИЯ карточки
     _deleteCardClick() {
       this._element.remove();
-    };
-
-    //метод открытия попапа с картинкой
-    _openPicturePopupClick() {
-      openPicturePopup(this._name, this._link);
     };
   }
