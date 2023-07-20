@@ -1,3 +1,4 @@
+import './index.css';
 import { imagePopup, formProfilePopup, formCardPopup, editPopup, buttonOpenProfilePopup, 
 		nameInputProfilePopup, professionInputProfilePopup, buttonSaveProfilePopup, cardPopup, 
 		buttonOpenCardPopup, nameInputCardPopup, linkInputCardPopup} from '../utils/constants.js';
