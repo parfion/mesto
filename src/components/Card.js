@@ -11,13 +11,13 @@ export class Card {
   
     _getTemplate() {
       // операции, чтобы вернуть разметку
-      const CardElement = document
+      const cardElement = document
       .querySelector(this._templateSelector)
       .content
       .querySelector('.element').cloneNode(true);
   
       // вернём DOM-элемент карточки
-      return(CardElement)
+      return(cardElement)
     }
   
     generateCard() {

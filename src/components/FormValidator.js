@@ -47,13 +47,13 @@ export class FormValidator {
     };
 
     //  ф-я добавления ошибок
-    _addErrorClass()  {
+    disableSubmitButton()  {
         this._button.classList.add(this._inactiveButtonClass);                
         this._button.setAttribute('disabled', 'true'); 
     }
     
     //  ф-я удаления ошибок
-    _deleteErrorClass() {
+    enableSubmitButton() {
         this._button.classList.remove(this._inactiveButtonClass);             
         this._button.removeAttribute('disabled'); 
     }
@@ -61,9 +61,9 @@ export class FormValidator {
     //   ф-я блокировки/разблокировки кнопки
     _toggleButtonState() {                          
         if (this._hasInvalidInput(this._inputList)) {                                               
-            this._addErrorClass(this._button);                          
+            this.disableSubmitButton();                          
         } else {                                                                        
-            this._deleteErrorClass(this._button);                             
+            this.enableSubmitButton();                             
         };
     };
 
@@ -90,6 +90,6 @@ export class FormValidator {
         this._inputList.forEach((inputElement) => {
             this._hideInputError(inputElement);
         });
-        this._addErrorClass();
+        this.disableSubmitButton();
     };
 }

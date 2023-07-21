@@ -31,10 +31,10 @@ const cardsList = new Section({
 cardsList.renderItems()
 
 // создание НОВОЙ карточки
-function handleFormSubmitCard() {
+function handleFormSubmitCard(data) {
 	const addNewCard = ({                
-		name: nameInputCardPopup.value,                      
-		link: linkInputCardPopup.value                 
+		name: data.image,                      
+		link: data.link                 
 	});
 	const newCard = createCard(addNewCard);
 	cardsList.addItem(newCard);
@@ -44,7 +44,7 @@ function handleFormSubmitCard() {
 
 // ПОПАП с картинкой
 // (для передачи в класс Card)
-const popupWithImage = new PopupWithImage(imagePopup);
+const popupWithImage = new PopupWithImage('#popupImage');
 popupWithImage.setEventListeners();
 
 function handleCardClick(name, link) {
@@ -63,7 +63,7 @@ function handleFormSubmitProfile(data) {
 	popupProfile.close();
 }
 
-const popupProfile = new PopupWithForm(editPopup, handleFormSubmitProfile);
+const popupProfile = new PopupWithForm('#editButton', handleFormSubmitProfile);
 popupProfile.setEventListeners();
 buttonOpenProfilePopup.addEventListener('click', () => {
 	popupProfile.open();
@@ -71,13 +71,13 @@ buttonOpenProfilePopup.addEventListener('click', () => {
 	nameInputProfilePopup.value = userObj.name;               
     professionInputProfilePopup.value = userObj.info;
 	popupEditForm.resetValidation();
-	buttonSaveProfilePopup.classList.remove(validation.inactiveButtonClass);
+	popupEditForm.enableSubmitButton();
 })
 
 //-------------------------------------------------------------------------------------//
 
 // ПОПАП для создания карточки
-const popupCard = new PopupWithForm(cardPopup, handleFormSubmitCard);
+const popupCard = new PopupWithForm('#addButton', handleFormSubmitCard);
 popupCard.setEventListeners();
 
 buttonOpenCardPopup.addEventListener('click', () => {

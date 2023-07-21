@@ -20,20 +20,20 @@
                 <div class="profile__info">
                     <div class="profile__name-flex">
                         <h1 class="profile__info-name">Жак-Ив Кусто</h1>
-                        <button class="profile__edit-button" type="button"></button>
+                        <button class="profile__edit-button" type="button" aria-label="Открыть попап профайла"></button>
                     </div>
                     <p class="profile__info-profession">Исследователь океана</p>
                 </div>
-                <button class="profile__add-button" type="button"></button>
+                <button class="profile__add-button" type="button" aria-label="Открыть попап создания карточки"></button>
             </section>
 
             <template class="elements">
                 <div class="element">
-                    <button class="element__trash" type="button"></button>
+                    <button class="element__trash" type="button" aria-label="Удалить карточку"></button>
                     <img class="element__pic" alt="картинка для карточки">
                     <div class="element__info">
                         <h2 class="element__name"></h2>
-                        <button class="element__reaction" type="button"></button>
+                        <button class="element__reaction" type="button" aria-label="Поставить лайк карточке"></button>
                     </div>
                 </div>
             </template>
@@ -53,10 +53,12 @@
                     <input id="profession-input" class="popup__input popup__input_value_profession" name="profession" type="text" 
                     required minlength="2" maxlength="200">
                     <span class="profession-input-error form__type-error"></span>
-                    <button id="saveButton" class="button popup__save-button" type="submit">Сохранить</button>
+                    <button id="saveButton" class="button popup__save-button" type="submit" 
+                    aria-label="Обновить данные профайла">Сохранить</button>
                 </form>
 
-                <button class="popup__close-button popup__close-button_profile" type="button"></button>
+                <button class="popup__close-button popup__close-button_profile" type="button" 
+                aria-label="Закрыть попап профайла"></button>
             </div>
         </div>
 
@@ -70,10 +72,12 @@
                     <input id="card-link-input" class="popup__input popup__input_value_picture-card" name="link" type="url" 
                     placeholder="Ссылка на картинку" required>
                     <span class="card-link-input-error form__type-error"></span>
-                    <button id="addCardButton" class="button popup__save-button" type="submit">Создать</button>
+                    <button id="addCardButton" class="button popup__save-button" type="submit" 
+                    aria-label="Создать новую карточку">Создать</button>
                 </form>
 
-                <button class="popup__close-button popup__close-button_add" type="button"></button>
+                <button class="popup__close-button popup__close-button_add" type="button" 
+                aria-label="Закрыть попап создания карточки"></button>
             </div>
         </div>
 
@@ -81,7 +85,8 @@
             <div class="popup__open-picture">
                 <img class="popup__picture" alt="увеличенная картинка из карточки" src="#">
                 <p class="popup__name"></p>
-                <button class="popup__close-button popup__close-button_picture" type="button"></button>
+                <button class="popup__close-button popup__close-button_picture" type="button" 
+                aria-label="Закрыть увеличенную карточку"></button>
             </div>
         </div>
     </body>

@@ -12,7 +12,8 @@ export default class PopupWithImage extends Popup {
     // перезаписываем метод open родителя
     open(name, link) {                                     
         this._imageName.textContent = name;
-        this._image.src = link; 
+        this._image.src = link;
+        this._image.alt = name;
         // вызываем метод open у родителя
         super.open()
     }

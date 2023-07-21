@@ -2,8 +2,10 @@
 
 export default class Popup {
     constructor(popupSelector) {
-        this._popup = popupSelector;
-        this._closeButton = popupSelector.querySelector('.popup__close-button');
+        this._popup = document.querySelector(popupSelector);
+        this._closeButton = this._popup.querySelector('.popup__close-button');
+        this._handleEscClose = this._handleEscClose.bind(this);
+        this._handleOverlayClose = this._handleOverlayClose.bind(this);
     }
 
     // ЗАКРЫТИЕ POPUP на ESC
@@ -23,19 +25,18 @@ export default class Popup {
     // ОТКРЫТИЕ POPUP
     open() {
         this._popup.classList.add('popup_opened');
-        document.addEventListener('keydown', (evt) => this._handleEscClose(evt));
+        document.addEventListener('keydown', this._handleEscClose);
     }
 
     // ЗАКРЫТИЕ POPUP
     close() {
         this._popup.classList.remove('popup_opened');
-        document.removeEventListener('keydown', (evt) => this._handleEscClose(evt));
-        //console.log(this)
+        document.removeEventListener('keydown', this._handleEscClose);
     }
 
     // Добавляем слушатели
     setEventListeners() {
-        this._closeButton.addEventListener('click', () => this.close());
-        this._popup.addEventListener('click', (evt) => this._handleOverlayClose(evt));
+        this._closeButton.addEventListener('click', this.close.bind(this));
+        this._popup.addEventListener('click', this._handleOverlayClose);
     }
 }
