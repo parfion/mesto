@@ -5,10 +5,13 @@ export const editPopup = document.querySelector('#editButton');
 export const buttonCloseProfilePopup = document.querySelector('.popup__close-button_profile');
 export const profileInfoNameEl = document.querySelector('.profile__info-name');
 export const profileInfoProfessionEl = document.querySelector('.profile__info-profession');
+export const profileAvatarEl = document.querySelector('.profile__avatar');
 export const nameInputProfilePopup = document.querySelector('.popup__input_value_name');
 export const professionInputProfilePopup = document.querySelector('.popup__input_value_profession');
 export const formProfilePopup = document.querySelector('#formProfile');
 export const buttonSaveProfilePopup = document.querySelector('#saveButton');
+export const likesCount = document.querySelector('.element__reaction-count');
+export const deleteCardPopup = document.querySelector('#trashButton');
 //  переменные для попапа с картинкой
 export const imagePopup = document.querySelector('#popupImage');                           
 export const buttonCloseImagePopup = document.querySelector('.popup__close-button_picture');     
@@ -25,4 +28,6 @@ export const buttonAddNewCard = document.querySelector('#addCardButton');
 export const nameInputCardPopup = document.querySelector('.popup__input_value_name-card');             
 export const linkInputCardPopup = document.querySelector('.popup__input_value_picture-card');   
 export const formCardPopup = document.querySelector('#formCard');
-
+// переменные для попапа редактирования аватара
+export const formAvatarPopup = document.querySelector('#formEditAvatar');
+export const buttonAvatarEditPopup = document.querySelector('#avatarEdit')
