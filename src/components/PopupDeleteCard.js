@@ -4,7 +4,7 @@ export default class PopupDeleteCard extends Popup {
     constructor(popupSelector, handleDeleteSubmit) {
         super(popupSelector);
         this._handleFormSubmit = handleDeleteSubmit;
-        this._submitbutton = this._popup.querySelector('#saveButton');
+        this._submitbutton = this._popup.querySelector('#deleteCardButton');
         this._form = this._popup.querySelector('#formDeleteCard');
     }
 

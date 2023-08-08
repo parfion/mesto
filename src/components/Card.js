@@ -78,15 +78,25 @@ export class Card {
   
     // метод лайка карточки
     _handleLikeClick() {
-      this._likeCard.classList.add('element__reaction_like');
+      // this._likeCard.classList.add('element__reaction_like');
       this._likeClick(this._id, this._data);
     };
 
+    changeLikeCard(res) {
+      this._likesCount.textContent = res.likes.length;
+			this._likeCard.classList.add('element__reaction_like');
+    }
+
     // метод дизлайка карточки
     _handledislikeClick() {
-      this._likeCard.classList.remove('element__reaction_like');
+      // this._likeCard.classList.remove('element__reaction_like');
       this._dislikeClick(this._id, this._data);
     };
+
+    changeDislikeCard(res) {
+      this._likesCount.textContent = res.likes.length;
+			this._likeCard.classList.remove('element__reaction_like');
+    }
 
     //метод УДАЛЕНИЯ карточки
     deleteCardClick() {

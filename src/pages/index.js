@@ -9,7 +9,6 @@ import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 import PopupWithForm from '../components/PopupWithForm.js';
-import Popup from '../components/Popup';
 import PopupDeleteCard from '../components/PopupDeleteCard';
 import Api from '../components/Api.js'
 
@@ -21,18 +20,9 @@ const api = new Api({
 	}
   }); 
 
-//	Загрузка информации о пользователе с сервера
-api
-	.getUserInfo()
-	.then((data) => {
-		userInfo.setUserInfo(data)
-	})
-	.catch((err) => console.error(`Ошибка: ${err}`))
-
-
 //----------------------------------------------------------------------------------- //
 
-//  Загрузка карточек с сервера
+//  Загрузка карточек с сервера / Загрузка информации о пользователе с сервера
 //	создание экземпляра карточки
 let myUserId; 
 function createCard(data) {
@@ -50,12 +40,14 @@ const cardList = new Section({
 
 Promise.all([api.getInitialCards(), api.getUserInfo()])
 	.then(([cardsData, userData]) => {
+		userInfo.setUserInfo(userData)
 		myUserId = userData._id;
+		cardsData.reverse();
 		cardList.renderItems(cardsData);
 	})
 	.catch((err) => console.error(`Ошибка: ${err}`))
 
-// ПОПАП с картинкой
+// открытие попапа с картинкой
 // (для передачи в класс Card)
 const popupWithImage = new PopupWithImage('#popupImage');
 popupWithImage.setEventListeners();
@@ -79,11 +71,11 @@ function handleFormEditAvatar(data) {
 		popupAvatar.close() 
 		})
 		.catch((err) => console.error(`Ошибка: ${err}`))
+		.finally(() => popupAvatar.renderLoading('Сохранить'))
 }
 
 // открытие попапа
 buttonAvatarEditPopup.addEventListener('click', () => {
-	popupAvatar.renderLoading('Сохранить');
 	popupAvatar.open();
 	popupEditAvatar.resetValidation();
  })
@@ -109,11 +101,11 @@ function handleFormSubmitProfile(data) {
 			popupProfile.close();
 		})
 		.catch((err) => console.error(`Ошибка: ${err}`))
+		.finally(() => popupProfile.renderLoading('Сохранить'))
 }
 
 // открытие попапа
 buttonOpenProfilePopup.addEventListener('click', () => {
-	popupProfile.renderLoading('Сохранить');
 	popupProfile.open();
 	const userObj = userInfo.getUserInfo();
 	nameInputProfilePopup.value = userObj.name;               
@@ -138,11 +130,11 @@ function handleFormSubmitCard(data) {
 			popupCard.close()
 		})
 		.catch((err) => console.error(`Ошибка: ${err}`))
+		.finally(() => popupCard.renderLoading('Создать'))
 };
 
 // открытие попапа
 buttonOpenCardPopup.addEventListener('click', () => {
-	popupCard.renderLoading('Создать')
 	popupCard.open();
 	popupAddform.resetValidation();
 });
@@ -162,11 +154,11 @@ function handleDeleteSubmit(cardId, cardElement) {
 			cardElement.deleteCardClick()
 		})
 		.catch((err) => console.error(`Ошибка: ${err}`))
+		.finally(() => popupDeleteCard.renderLoading('Да'))
 }
 
 // открытие попапа
 function openPopupDeleteCard(cardId, cardElement) {
-	popupDeleteCard.renderLoading('Да');
 	popupDeleteCard.open(cardId, cardElement);
 }
 
@@ -176,7 +168,9 @@ function openPopupDeleteCard(cardId, cardElement) {
 function likeCard(cardId, card) { 
 	api
 		.addLike(cardId, card)
-		.then((res) => this._likesCount.textContent = res.likes.length )
+		.then((res) => {
+			this.changeLikeCard(res)
+		})
 		.catch((err) => console.error(`Ошибка: ${err}`))
 }
 
@@ -184,7 +178,9 @@ function likeCard(cardId, card) {
 function dislikeCard(cardId, card) {
 	api
 		.deleteLike(cardId, card)
-		.then((res) => this._likesCount.textContent = res.likes.length)
+		.then((res) => {
+			this.changeDislikeCard(res)
+		})
 		.catch((err) => console.error(`Ошибка: ${err}`))
 }
 
