@@ -19,8 +19,8 @@
 .element__info{align-items:center;display:flex;justify-content:space-between;margin:auto;min-width:240px}
 .element__name{color:#000;font-size:24px;font-weight:900;line-height:1;margin:0;max-width:230px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .element__likes{align-items:center;display:flex;flex-direction:column;min-height:35px;min-width:22px}
-.element__reaction{background:url(images/Like.1ad06e85f169668a1f36.svg);background-position:50%;background-repeat:no-repeat;border:0;box-sizing:border-box;cursor:pointer;height:19px;padding:0;width:22px}.element__reaction:hover{opacity:.5;transition:all .2s ease-in-out}
-.element__reaction_like{background:url(images/Like_active.35948469632d0421d697.svg);opacity:1}.element__reaction_like:hover{opacity:1;transition:all .2s ease-in-out}
+.element__reaction{background:url(images/Like.1ad06e85f169668a1f36.svg);background-position:50%;background-repeat:no-repeat;border:0;box-sizing:border-box;cursor:pointer;height:19px;padding:0;width:22px}.element__reaction:hover{opacity:.5;transition:all .3s ease-in}
+.element__reaction_like{background:url(images/Like_active.35948469632d0421d697.svg);opacity:1}.element__reaction_like:hover{opacity:1;transition:all .2s ease-out}
 .element__reaction-count{color:#000;font-size:13px;font-weight:400;line-height:15.73px;margin:3px 0 0;max-height:13px}
 .footer{margin:0 auto;max-width:880px;padding-bottom:57px}@media screen and (max-width:925px){.footer{padding-left:50px;padding-right:50px}}@media screen and (max-width:767px){.footer{padding-left:25px;padding-right:25px}}@media screen and (max-width:600px){.footer{padding-bottom:32px;padding-left:19px;padding-right:19px}}
 .footer__text{color:#545454;font-size:18px;font-weight:400;line-height:1;margin:0;max-width:318px}@media screen and (max-width:600px){.footer__text{font-size:14px}}
